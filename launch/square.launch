@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <launch>
 	<node pkg="turtlesim" name="simulator" type="turtlesim_node"/>
-	<node pkg="move_turtle" name="move_square" type="move_square.py"/>
+	<node pkg="move_turtle" name="move_square" type="move_square.py">
+		<remap from="cmd_vel" to="turtle1/cmd_vel"/>
+		<remap from="pose" to="turtle1/pose"/>
+		<param name="linear_speed" type="double" value="2.0"/>
+		<param name="angular_speed" type="double" value="1.0"/>
+	</node>		
 </launch>

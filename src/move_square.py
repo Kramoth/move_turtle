@@ -10,12 +10,15 @@ from turtlesim.msg import Pose
 
 def move_square():
 	rospy.init_node("move_square_node")
-	pub=rospy.Publisher("/turtle1/cmd_vel",Twist,queue_size=1)
+	pub=rospy.Publisher("cmd_vel",Twist,queue_size=1)
 	rate=rospy.Rate(30)
-	rospy.Subscriber("/turtle1/pose",Pose, getPose)
+	rospy.Subscriber("pose",Pose, getPose)
+	linear_speed=rospy.get_param("~linear_speed",3)
+	angular_speed=rospy.get_param("~angular_speed",2)
+	rospy.loginfo("starting square with linear_speed: %f and angular_speed: %f"%(linear_speed, angular_speed))
 	while not rospy.is_shutdown():
-		move_line(pub,rate,3)
-		rotate(pub,rate,2)
+		move_line(pub,rate,linear_speed)
+		rotate(pub,rate,angular_speed)
 		print("turtle is a coordinate (%f,%f) heading to %f"%(turtlePose.x,turtlePose.y,turtlePose.theta))
 def move_line(pub,rate,linear_speed):
 	cmd=Twist()

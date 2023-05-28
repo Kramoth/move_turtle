@@ -32,7 +32,7 @@ rosrun turtlesim turtlesim_node
 Dans un troisieme terminal 
 ```sh
 source ~/catkin_ws/devel/setup.bash
-rosrun move_turtle move_square.py
+rosrun move_turtle move_square.py /cmd_vel:=/turtle1/cmd_vel /pose:=/turtle1/pose _linear_speed:=4.0 _angular_speed:=0.5
 ```
 Vous remarquerez que le carre decrit par la tortue derive, cela est du au fait que l'algorithme realise une commande par dead reckoning. Pour limiter l'effet de drift de la tortue il faudrait utiliser la pose de la tortue et mettre cette information dans une boucle de retro action pour realiser une regulation.
 
